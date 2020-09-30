@@ -1,0 +1,30 @@
+name: 'Create an annotation'
+description: 'Useful for testing out annotations.'
+branding:
+  icon: 'alert-circle'
+  color: 'red'
+inputs:
+  token:
+    description: 'The GitHub authentication token.'
+    required: false
+    default: ${{ github.token }}
+  type:
+    description: 'Annotation type. Valid options are failure, warning, or notice.'
+    required: false
+    default: 'notice'
+  check_name:
+    description: "The name of the check run to add annotations to.
+        This should be the same as the job that uses this action."
+    required: true
+  description:
+    description: 'Description for the annotation.'
+    required: false
+    default: 'This is an annotation that was created for test purposes.'
+  commit_sha:
+    description: "Commit to attach the check to. If the trigger is `push`,
+        this should just be github.sha. If the trigger is `pull_request`,
+        this should be the github.event.pull_request.head.sha"
+    required: true
+runs:
+  using: 'node12'
+  main: 'index.js'
